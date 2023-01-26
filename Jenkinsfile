@@ -2,21 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Check directory content') {
             steps {
-                echo 'Building..'
+                echo 'Checking directory content'
                 sh "pwd"
                 sh "ls -al"
             }
         }
-        stage('Test') {
+        stage('TF init') {
             steps {
-                echo 'Testing..'
+                echo 'Initializing terraform...'
+                sh 'terraform init'
             }
         }
-        stage('Deploy') {
+        stage('TF validate') {
             steps {
-                echo 'Deploying....'
+                echo 'Validating terraform files...'
+                sh 'terraform validate'
             }
         }
     }
