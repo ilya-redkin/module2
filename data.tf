@@ -1,24 +1,24 @@
 data "aws_ami" "amzlinux2" {
   most_recent = true
-  owners = [ "amazon" ]
+  owners      = ["amazon"]
   filter {
-    name = "name"
-    values = [ "amzn2-ami-hvm-*-gp2" ]
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-gp2"]
   }
   filter {
-    name = "root-device-type"
-    values = [ "ebs" ]
+    name   = "root-device-type"
+    values = ["ebs"]
   }
   filter {
-    name = "virtualization-type"
-    values = [ "hvm" ]
+    name   = "virtualization-type"
+    values = ["hvm"]
   }
   filter {
-    name = "architecture"
-    values = [ "x86_64" ]
+    name   = "architecture"
+    values = ["x86_64"]
   }
 }
 
 data "aws_key_pair" "sandbox" {
-    key_name = "sandbox-keypair-us-east-1"
+  key_name = "sandbox-keypair-us-east-1"
 }

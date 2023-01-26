@@ -1,7 +1,7 @@
 resource "aws_vpc" "wordpress-workshop" {
-  cidr_block = "192.168.0.0/16"
+  cidr_block           = "192.168.0.0/16"
   enable_dns_hostnames = true
-  enable_dns_support = true
+  enable_dns_support   = true
   tags = merge(
     var.common_tags,
     {
@@ -11,9 +11,9 @@ resource "aws_vpc" "wordpress-workshop" {
 }
 
 resource "aws_subnet" "public_subnet_a" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1a"
-  cidr_block = "192.168.0.0/24"
+  cidr_block        = "192.168.0.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -23,9 +23,9 @@ resource "aws_subnet" "public_subnet_a" {
 }
 
 resource "aws_subnet" "public_subnet_b" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1b"
-  cidr_block = "192.168.1.0/24"
+  cidr_block        = "192.168.1.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -35,9 +35,9 @@ resource "aws_subnet" "public_subnet_b" {
 }
 
 resource "aws_subnet" "application_subnet_a" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1a"
-  cidr_block = "192.168.2.0/24"
+  cidr_block        = "192.168.2.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -47,9 +47,9 @@ resource "aws_subnet" "application_subnet_a" {
 }
 
 resource "aws_subnet" "application_subnet_b" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1b"
-  cidr_block = "192.168.3.0/24"
+  cidr_block        = "192.168.3.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -59,9 +59,9 @@ resource "aws_subnet" "application_subnet_b" {
 }
 
 resource "aws_subnet" "data_subnet_a" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1a"
-  cidr_block = "192.168.4.0/24"
+  cidr_block        = "192.168.4.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -71,9 +71,9 @@ resource "aws_subnet" "data_subnet_a" {
 }
 
 resource "aws_subnet" "data_subnet_b" {
-  vpc_id = aws_vpc.wordpress-workshop.id
+  vpc_id            = aws_vpc.wordpress-workshop.id
   availability_zone = "us-east-1b"
-  cidr_block = "192.168.5.0/24"
+  cidr_block        = "192.168.5.0/24"
   tags = merge(
     var.common_tags,
     {
@@ -128,7 +128,7 @@ resource "aws_eip" "nat_gw_eip-b" {
 
 resource "aws_nat_gateway" "nat-gw-a" {
   allocation_id = aws_eip.nat_gw_eip-a.id
-  subnet_id = aws_subnet.public_subnet_a.id
+  subnet_id     = aws_subnet.public_subnet_a.id
   depends_on = [
     aws_internet_gateway.igw
   ]
@@ -142,7 +142,7 @@ resource "aws_nat_gateway" "nat-gw-a" {
 
 resource "aws_nat_gateway" "nat-gw-b" {
   allocation_id = aws_eip.nat_gw_eip-b.id
-  subnet_id = aws_subnet.public_subnet_b.id
+  subnet_id     = aws_subnet.public_subnet_b.id
   depends_on = [
     aws_internet_gateway.igw
   ]
