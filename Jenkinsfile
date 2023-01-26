@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building..',
+                pwd, 
+                ls -al
             }
         }
         stage('Test') {
