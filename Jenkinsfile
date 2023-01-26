@@ -21,5 +21,22 @@ pipeline {
                 sh 'terraform validate'
             }
         }
+        stage('TF plan') {
+            steps {
+                echo 'Displaying terraform plan...'
+                sh 'terraform validate'
+            }
+        }
+        stage('TF deploy') {
+            steps {
+                echo 'Deploying terraform infrastructure...'
+                sh 'terraform apply -auto-approve'
+            }
+        }
+        stage('Reporting result') {
+            steps {
+                echo 'Terraform infrastructure has been deployed or updated'
+            }
+        }
     }
 }
